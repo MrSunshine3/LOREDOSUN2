@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lore</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&amp;family=IM+Fell+English:ital@0;1&amp;family=Metamorphous&amp;display=swap" rel="stylesheet">
+<style>
+@property --a{syntax:'<color>';inherits:true;initial-value:#12151b}
+@property --b{syntax:'<color>';inherits:true;initial-value:#2b3340}
+:root{--ink:#efe6d2;--gold:#d8b45a}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font:1.2rem/1.85 'IM Fell English',Georgia,serif;background:linear-gradient(170deg,var(--a),var(--b)) fixed;transition:--a 1.6s,--b 1.6s;min-height:100vh}
+#bgi{position:fixed;inset:0;z-index:-1;background-size:cover;background-position:center}
+button,select,input,textarea{font:inherit}
+button{cursor:pointer;background:rgba(138,92,246,.25);color:var(--ink);border:1px solid rgba(216,180,90,.5);border-radius:8px;padding:.2rem .6rem;font-size:.9rem}
+button:hover{background:rgba(138,92,246,.5)}
+#bar{position:fixed;top:0;left:0;right:0;z-index:6;display:flex;gap:.5rem;align-items:center;padding:calc(.5rem + env(safe-area-inset-top,0px)) .8rem .5rem;background:linear-gradient(rgba(5,4,12,.85),transparent)}
+#bar b{flex:1;font:700 .9rem Metamorphous,serif;color:var(--gold);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#side{position:fixed;top:0;bottom:0;left:0;width:270px;z-index:7;background:rgba(10,7,22,.96);border-right:1px solid rgba(216,180,90,.35);padding:calc(1rem + env(safe-area-inset-top,0px)) 1rem 1rem;overflow:auto;transform:translateX(-100%);transition:transform .3s;font:15px/1.4 system-ui,sans-serif}
+body.menu #side{transform:none}
+#side h2{font:900 1.1rem 'Cinzel Decorative',serif;color:var(--gold);margin:0 0 .8rem}
+#chs{list-style:none;margin:0 0 .8rem;padding:0}
+#chs li{padding:.5rem .6rem;border-radius:8px;cursor:pointer;display:flex;justify-content:space-between;gap:.3rem;align-items:center}
+#chs li.on{background:rgba(138,92,246,.3);color:var(--gold)}
+#chs li:hover{background:rgba(255,255,255,.08)}
+.mv{white-space:nowrap}.mv button{padding:0 .3rem;font-size:.75rem}
+.tools{display:none;flex-direction:column;gap:.4rem;margin-top:1rem}
+.edit .tools{display:flex}
+.ro #tog{display:none}
+main{max-width:660px;margin:0 auto;padding:0 1.2rem 20vh}
+.hero{min-height:75vh;display:flex;flex-direction:column;justify-content:center;text-align:center;gap:.6rem}
+.edit .hero{min-height:auto;padding:5rem 0 1rem}
+.hero input,.ctl input,.ctl select,textarea{background:rgba(0,0,0,.45);color:var(--ink);border:1px solid rgba(216,180,90,.35);border-radius:6px;padding:.3rem .5rem}
+.hero input{text-align:center;width:100%}
+h1{font:900 clamp(2rem,9vw,3.2rem)/1.15 'Cinzel Decorative',serif;color:var(--gold);margin:0;text-shadow:0 0 28px rgba(216,180,90,.35)}
+.sub{font:700 .9rem Metamorphous,serif;letter-spacing:.2em;text-transform:uppercase;opacity:.8}
+.ia{font-size:.72rem;font-style:italic;opacity:.6;line-height:1.4}
+.blk{padding:9vh 0;opacity:0;transform:translateY(26px);transition:opacity 1s,transform 1s}
+.blk.on,.edit .blk{opacity:1;transform:none}
+.edit .blk{padding:1rem;margin:1rem 0;border:1px dashed rgba(216,180,90,.35);border-radius:12px;background:rgba(0,0,0,.25)}
+.ctl{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.6rem;font:14px system-ui,sans-serif}
+.ctl input[type=color]{width:34px;height:30px;padding:0;border:0;background:none}
+.ctl input[data-f=img]{flex:1;min-width:140px}
+textarea{width:100%;min-height:90px;font:1rem/1.5 system-ui,sans-serif;margin-bottom:.8rem;display:block}
+.tx{margin:0}
+.bal{background:#f4ecd8;color:#1a1424;border-radius:22px;padding:.8rem 1.2rem;max-width:82%;position:relative;margin:0 auto 12px 0;line-height:1.5}
+.bal.r{margin:0 0 12px auto}
+.bal:after{content:"";position:absolute;bottom:-10px;left:22px;border:10px solid transparent;border-top-color:#f4ecd8;border-bottom:0}
+.bal.r:after{left:auto;right:22px}
+.who{display:block;font:700 .75rem Metamorphous,serif;color:#7a5a10;letter-spacing:.08em;margin-bottom:.2rem}
+.pen{border:2px dashed rgba(239,230,210,.55);border-radius:40px;padding:.8rem 1.4rem;max-width:82%;font-style:italic;background:rgba(255,255,255,.07)}
+.sis{border:1px solid var(--gold);box-shadow:0 0 22px rgba(138,92,246,.5),inset 0 0 18px rgba(138,92,246,.2);background:rgba(10,8,30,.65);padding:1.1rem 1.3rem;font:.95rem/1.7 Metamorphous,serif;color:#e8dcff;border-radius:4px}
+.efx{font:900 clamp(3rem,16vw,6rem)/1 'Cinzel Decorative',serif;text-align:center;color:#fff;text-shadow:0 0 30px #ff2a2a,5px 5px 0 rgba(122,16,23,.9)}
+.addrow,.end{text-align:center;padding:2rem 0}
+.end{padding:12vh 0 4vh;font:700 1rem Metamorphous,serif;color:var(--gold);letter-spacing:.3em}
+.end button{font-size:1rem;padding:.5rem 1.2rem;letter-spacing:0}
+dialog{background:#150f2a;color:var(--ink);border:1px solid var(--gold);border-radius:12px;width:min(520px,92vw);font:15px system-ui,sans-serif}
+dialog::backdrop{background:rgba(0,0,0,.7)}
+dialog textarea{min-height:240px}
+#yt{position:fixed;bottom:0;right:0;width:1px;height:1px;border:0;opacity:0;pointer-events:none}
+@media(prefers-reduced-motion:reduce){.blk{transition:none;opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="bgi"></div>
+<div id="bar"><button data-a="menu">☰</button><b id="ttl"></b><button id="tog" data-a="tog"></button><button id="mbtn" data-a="music">🔈</button></div>
+<aside id="side"><h2>Lore</h2><ul id="chs"></ul>
+<div class="tools"><button data-a="addch">+ Capítulo</button><button data-a="exp">Exportar backup (.json)</button><button data-a="imp">Importar backup (.json)</button><button data-a="site">Exportar site (.html)</button></div>
+<input type="file" id="file" accept=".json" hidden=""></aside>
+<main id="view"></main>
+<dialog id="dlg"><p>Cole seu texto. Cada parágrafo (separado por linha em branco) vira um bloco.</p><textarea id="pt"></textarea><div style="display:flex;gap:.5rem;justify-content:flex-end"><button data-a="pno">Cancelar</button><button data-a="pgo">Criar blocos</button></div></dialog>
+<iframe id="yt" allow="autoplay"></iframe>
+<script id="seed" type="application/json">{"cur":3,"chs":[{"id":"lems9qd","title":"LUMINOS - SUN","sub":"Capítulo 1 - Lumos","music":"https://www.youtube.com/watch?v=wtHra9tFISY","note":"Reescrita da lore enviada no forms, aproveite !!!","blocks":[{"t":"s","x":"SEGUNDO SEMESTRE DE 2026, East End - Londes","c1":"#000019","c2":"#0042ad","img":""},{"t":"t","x":"East End não era um bairro conhecido por sua segurança, marcado pela miséria, violência e brigas de rua, East End era o local mais precarizado de Londres, esquecido por seus governantes e depravado por seus moradores, mais especificadamente...\n\nCrianças\n\nDentre todas as brigas de adolescentes, uma criança menor se destacava, pouca altura, força e resistência, mas nunca fugia das brigas mesmo que nunca tivesse ganho alguma, Sun, um garoto de 12 anos de idade corria pelos becos junto de um grupo de garotos mais velho que não conhecia, sendo perseguido por dois homens barbados segurando cacetetes.","c1":"#000019","c2":"#0042ad","img":""},{"t":"f","x":"\"VOLTEM AQUI!\" ","c1":"#000019","c2":"#0042ad","img":"","side":"l","who":"Policial"},{"t":"t","x":"O homem mais a frente gritava em direção aos garotos, liderados por Sun, quanto mais corriam, mais os guardas pareciam estar pertos, era inegavel, era impossivel ganhar uma corrida com homens treinados para perseguir criminosos, mas isso não significava que iriam parar. Em um impulso, Sun virou uma esquina em direção a um dos inúmeros becos do bairro, sem olhar para onde iam os garotos esbarravam nas paredes úmidas e sujas de infiltração seguindo Sun até o mesmo parar no final do beco...","c1":"#000019","c2":"#0042ad","img":""},{"t":"f","x":"\"Andem, se escondam!!\"","c1":"#000019","c2":"#0042ad","img":"","who":"Sun"},{"t":"t","x":"O garoto de moicano negro gritou, apontando na direção de uma caçamba de lixo. Os garotos se entreolharam, mas sem opções pularam na caçamba junto de Sun\n\n...\n\nO Silêncio era ensurdecedor, apenas interrompido pelo barulho assustadoramente perto de um rato dentro da caçamba de lixo. Os garotos se moveram desesperadamente, pulando para o lado de fora, apenas para caírem logo aos pés dos guardas que o perseguiam.","c1":"#163450","c2":"#163b30","img":""},{"t":"t","x":"Os garotos rapidamente se ajoelharam, pedindo perdão as guardas. Um dos guardas se aproximou, dando passos lentos em direção ao garoto mais a frente, e antes que pudesse desferir um potente golpe com o cacetete, foi empurrado por Sun que saiu da caçamba de lixo com um impulso","c1":"#00190e","c2":"#000000","img":""},{"t":"f","x":"VAMOS! RÁPIDO","c1":"#00190e","c2":"#000000","img":"","who":"Sun"},{"t":"t","x":"Sun ordenou aos garotos, mas antes que pudesse fazer qualquer coisa, foi segurado pelo outro guarda. Os garotos viram o líder deles ser contido pelo policial, e em desespero, saíram correndo sem olhar para trás...","c1":"#00190e","c2":"#000000","img":""},{"t":"f","x":"EI! EI! EI! NÃO ME DEIXEM AQUI!!","c1":"#00190e","c2":"#000000","img":"","who":"Sun"},{"t":"t","x":"Sun balbuciou, antes de perceber o guarda que havia empurrado se levantando e andando na direção dele, que agora não conseguia se defender. O homem levantou o braço, preparando um ataque, tudo que sun pode fazer foi virar o virar o rosto e fechar os olhos, esperando o pior...","c1":"#00190e","c2":"#000000","img":""},{"t":"e","x":"Estupefaça!","c1":"#000000","c2":"#d10000","img":""},{"t":"t","x":"Ambos os homens caíram desacordados ao chão. Ao abrir os olhos Sun viu a silhueta de um homem alto, 180cm de altura, pele clara e brilhantes olhos amarelos, semelhantes aos seus. O homem se aproximou, levantando a mão na direção do garoto. A sombra contrastada com a luz dos postes escondia o rosto do homem. Sun agora com mais medo que antes, fechou os olhos e se encolheu no chão.\n\nO homem caminhou até ficar a poucos centimetros do jovem, se abaixando em sua altura e erguendo um braço ao alto com força","c1":"#000000","c2":"#d10000","img":""}]},{"id":"sgvbbr2","title":"LUMINOS - SUN","sub":"Capítulo 2 - lar doce lar","music":"https://www.youtube.com/watch?v=3gqpjm4zci4","note":"","blocks":[{"t":"f","x":"\"AAAAH GAROTO, POR QUE CONTINUA COMPRANDO BRIGA QUE NÃO VAI GANHAR?!! \"","c1":"#12151b","c2":"#b35000","img":"","side":"r","who":"???"},{"t":"t","x":"O homem lançou a mão rapidamente a cabeça de Sun, bagunçando seu cabelo e puxando ele pelo mesmo.","c1":"#12151b","c2":"#b35000","img":""},{"t":"f","x":"\"AI AI! TIO, ISSO DÓI\"","c1":"#12151b","c2":"#b35000","img":"","who":"Sun"},{"t":"f","x":"\"Eles precisavam de ajuda! eu ajudei, apenas isso\"","c1":"#12151b","c2":"#b35000","img":"","who":"Sun"},{"t":"t","x":"O homem continuava o trajeto, puxando Sun pelos cabelos, resmungando com o garoto.","c1":"#12151b","c2":"#b35000","img":""},{"t":"f","x":"\"Por que não me chamou?? briga de rua é uma coisa, atacar policiais é algo totalmente diferente!\"","c1":"#12151b","c2":"#b35000","img":"","side":"r","who":"???"},{"t":"f","x":"\" Você ao menos sabia o por que eles estavam brigando com os garotos?\"","c1":"#12151b","c2":"#b35000","img":"","side":"r","who":"???"},{"t":"t","x":"O jovem não fazia ideia do que eles tinham feito, envergonhado ele continuou seguindo  seu tio, Agnis, em silêncio até sua casa, ouvindo quieto todas suas reclamações. O garoto era extremamente cabeça dura, mas contrariar seu tio é algo que ele nunca faria.\n\nMinutos se passaram até eles chegarem em casa, Agnis e Sun subiram os degraus de pedra desgastados e umidos em direção a parte de cima de uma casa partilhada. O homem abriu a porta velha de madeira lentamente, o barulho estridente da madeira infiltrada da parte inferior  arrastando no chão ecoou por toda a casa, mas antes que entrassem...","c1":"#12151b","c2":"#b35000","img":""},{"t":"e","x":"CRASH!","c1":"#12151b","c2":"#b35000","img":""},{"t":"t","x":"O barulho de vidro se quebrando ecoou igualmente pela casa. em um movimento discreto Agnis mandou Sun esperar do lado de fora, e entrou dentro da casa.\n\nUm longo tempo se passou, Sun estava cansado de esperar pelo tio, que havia entrado em casa e não tinha voltado tem um bom tempo. O garato avançou lentamente para dentro de casa, em direção ao som que tinha escutado, em passos cuidadosos, sun andou até a cozinha onde achou seu tio... Brigando com uma coruja?\n\nO homem estava descabelado, com parte das roupas rasgadas e pequenos cortes em suas mãos e rosto, ambos brigavam pelo que parecia ser uma carta, curiso e com mais energia do que podia aguentar, Sun avançou rapidamente no meio dos dois, roubando a carta que era enderaçada, para ele?\n\n\"Sunninstar Shams, Hogwarts espera por você\"","c1":"#12151b","c2":"#b35000","img":""},{"t":"f","x":"\"Ho-g-warts? o que é isso?\"","c1":"#12151b","c2":"#b35000","img":"","who":"Sun"},{"t":"t","x":"Agnis tentou Pegar a carta da mão do sobrinho, mas o mesmo desviou rapidamente e continuou lendo a carta, minutos se passaram na mesma situação, Agnis tentando pegar a carta do filho, e o garoto desviando e lendo em voz alta.","c1":"#12151b","c2":"#b35000","img":""},{"t":"f","x":"\"Magia, é isso que você faz com aquele graveto?\n\"","c1":"#12151b","c2":"#b35000","img":""},{"t":"f","x":"\"Por que você nunca me contou?\"","c1":"#12151b","c2":"#b35000","img":""},{"t":"t","x":"Ofegante, e cansado de tentar pegar a carta do sobrinho, Agnis se sentou em uma das cadeiras da cozinha, colocando as mãos no ombro do sobrinho e suspirando fundo...","c1":"#12151b","c2":"#003542","img":""}]},{"id":"66unmy5","title":"LUMINOS - SUN","sub":"Contexto - Shams","music":"https://www.youtube.com/watch?v=KIXySk4GId0","note":"","blocks":[{"t":"t","x":"Localizado no interior da região do ártico, Shams, é uma pequena tribo indígena formada por bruxos, a comunidade é pequena e sobrevivia há muito tempo por ser completamente desconhecida, mas conforme as explorações foram aumentando, com o tempo, os Shams perderam espaço no ártico, a pressão de lidar com a descoberta deles pelos não-bruxos e batalhas com outras comunidades bruxas da região forçou eles a se dissiparem cada vez mais, mas dentre eles, algumas poucas dezenas de indígenas ficaram na tribo, com o intuito de defender ela do apagamento, dentre esses indígenas estavam Agnis, Luna e Naui Shams, familiares de Sun.\n\nAs batalhas eram intensas, e nessas mesmas batalhas, Luna e Naui acabaram falecendo em combate.  Nessa época Sun ja tinha 7 anos, ja tinha vivido muito tempo na aldeia, em uma decisão desesperado, temendo uma possivel tragédia com o filho de sua irmã, Agnis fez algo que talvez se arrependesse pelo resto da vida","c1":"#000000","c2":"#5cb0ff","img":""},{"t":"e","x":"OBLIViATE","c1":"#000000","c2":"#5cb0ff","img":""},{"t":"t","x":"Agnis apagou a maior parte da memória de sun sobre sua tribo, e fugiu para Londres, deixando os Shams a sua própria defesa.","c1":"#000000","c2":"#5cb0ff","img":""}]},{"id":"4i8fpdh","title":"LUMINOS - SUN","sub":"Capítulo 3 - Hogwarts","music":"https://www.youtube.com/watch?v=UuPb1J_RCJM&list=PLHdwt5eXHqeRIDSgEunlksZ_kL14Wt-fN","note":"","blocks":[{"t":"t","x":"Agnis fica em silencio após contar tudo, esperando a reação do sobrinho, que olha fixamente para o chão em silêncio. Sun fica estático, raciocinando o que acabou de ouvir, ele sabe que viveu lá agora, mas mesmo assim, não consegue se lembrar de nada.","c1":"#000000","c2":"#008388","img":""},{"t":"f","x":"Você... abandonou eles?","c1":"#000000","c2":"#008388","img":"","who":"Sun"},{"t":"t","x":"Agnis olha para Sun em choque com a pergunta, sem saber direito o que responder","c1":"#000000","c2":"#008388","img":""},{"t":"f","x":"Não! Não! Claro que -","c1":"#000000","c2":"#008388","img":"","side":"r","who":"Agnis"},{"t":"f","x":"Você abandonou eles para a morte! SE ACOVARDOU!!","c1":"#000000","c2":"#008388","img":"","who":"Sun"},{"t":"t","x":"A sala foi tomada por um silêncio ensurdecedor, a única coisa que podia ser escutada era o gotejamento da encanação ao lado de fora. Por minutos os dois apenas olhavam parando chão, pensando em falar algo, mas desistindo logo em seguida, a situação perdurou até Agnis romper o silêncio","c1":"#000000","c2":"#008388","img":""},{"t":"f","x":"Você quer realmente ir para hogwarts?","c1":"#000000","c2":"#008388","img":"","who":"Agnis","side":"r"},{"t":"t","x":"Sun finalmente olhou para Agnis, ainda emburrado, mas com um leve brilho no olhar. O garoto enxugou poucas lagrimas que caíram de seu rosto por causa da discussão, finalmente olhando no olho de seu tio","c1":"#000000","c2":"#008388","img":""},{"t":"f","x":"Quero!","c1":"#000000","c2":"#008388","img":"","who":"Sun"},{"t":"t","x":"Após a confirmação, Agnis ajudou sun a fazer suas malas, não havia muita coisa a ser levada além de trocas de roupas, fazendo a organização ser bem rápida. Enquanto arrumavam as coisas, Agnis parecia abatido com algo, mas o mesmo não falaria para Sun, não agora. O homem encostou levemente no ombro de seu sobrinho que acabava de fechar a maleta, olhando seriamente para ele.","c1":"#000000","c2":"#008388","img":""},{"t":"f","x":"\"Olha, eu não vou poder te acompanhar no beco diagonal, tome muito cuidado certo?\"","c1":"#000000","c2":"#0083a3","img":"","who":"Agnis","side":"r"},{"t":"f","x":"\"Você é meu sobrinho, mas desde que cheguei a Londres, te vejo como meu próprio filho, não se arrisque tanto como você faz aqui, a magia é algo perigoso.\"","c1":"#000000","c2":"#0083a3","img":"","who":"Agnis","side":"r"},{"t":"t","x":"Sun ficou em silêncio por alguns segundos, antes de se jogar em direção de Agnis, o puxando para um abraço.\n\nQuando a hora finalmente chegou, Sun partiu em direção ao beco diagonal, mas antes que pudesse dar um primeiro passo para dentro daquele lugar, uma coruja Branca pousou em seu braço, carregando uma carta, de Agnis Shams...","c1":"#000000","c2":"#066ab7","img":""},{"t":"s","x":"\"Por muito tempo eu tentei esconder sua ancestralidade mágica de você com o intuito de te proteger, te afastar do perigo que é o mundo mágico, mas no fundo, eu sempre soube que um dia você ia descobrir de alguma forma, sei também que não irá deixar de ser imprudente, irá buscar brigas e intrigas que não pode ganhar, igualzinho Luna, mas eu espero do fundo do meu coração, que você esteja sempre bem seguro, cercado de boas pessoas, assim como eu estava cercado por Luna e Naui. antes de chegar em Hogwarts, abra sua mala, deixei escondido bem no fundo uma caixa com uma pomada mágica, e instruções de como fazer e ativar ela.\nPor fim, eu deixo essa carta como uma despedida, durante o tempo que cuidei de você, não tive a qualidade tecnica para viver como um não-bruxo nesse mundo, decorri de métodos ilegais ao ministério da magia para proteger você e te dar uma vida razoavelmente digna, então por isso, acho que não voltaremos a nos ver novamente por um bom tempo, que hogwarts te proteja bem, tempos difíceis virão...\"","c1":"#000000","c2":"#007a41","img":""}]}]}</script>
+<script>
+(function(){
+const SRC='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
+const K='lore-manhwa-v1',$=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\*(.+?)\*/g,'<i>$1</i>').replace(/\n/g,'<br>');
+const uid=()=>Math.random().toString(36).slice(2,9);
+const ok=(c,d)=>/^#[0-9a-f]{6}$/i.test(c||'')?c:d;
+const blank=p=>({t:'t',x:'',c1:p?p.c1:'#12151b',c2:p?p.c2:'#2b3340',img:p?p.img||'':''});
+function demo(){return{cur:0,chs:[{id:uid(),title:'Capítulo 1',sub:'Seu subtítulo',music:'',note:'A formatação animada foi feita com auxílio de inteligência artificial, mas o texto foi completamente produzido por inteligência humana.',blocks:[
+{t:'t',x:'Clique em ✎ Editar e escreva aqui. Use **negrito** e *itálico*. Cada bloco tem seu próprio fundo: ele muda enquanto o leitor rola a página.',c1:'#12151b',c2:'#2b3340',img:''},
+{t:'e',x:'POW!!',c1:'#2a0508',c2:'#7a1017',img:''},
+{t:'f',who:'Sun',side:'l',x:'Eu quase me mijei!',c1:'#2a0508',c2:'#7a1017',img:''},
+{t:'p',x:'Será que dessa vez eu ganho?',c1:'#2a0508',c2:'#7a1017',img:''},
+{t:'s',x:'[Sistema]\nNovo capítulo desbloqueado.',c1:'#1c0f3a',c2:'#4a2a8a',img:''}]}]}}
+let seed=null;try{seed=JSON.parse($('#seed').textContent)}catch(e){}
+const RO=!!seed&&location.hash!=='#editar';
+let S=null;
+if(!RO){try{S=JSON.parse(localStorage.getItem(K))}catch(e){}}
+if(!S||!S.chs||!S.chs.length)S=(seed&&seed.chs&&seed.chs.length)?seed:demo();
+let E=false,playing=false,io1,io2;
+const cur=()=>S.chs[S.cur]||S.chs[0];
+const save=()=>{if(RO)return;try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+function bg(b){if(!b)return;const r=document.body.style;r.setProperty('--a',ok(b.c1,'#12151b'));r.setProperty('--b',ok(b.c2,'#2b3340'));
+const u=(b.img||'').replace(/["'\\()\s]/g,'');$('#bgi').style.backgroundImage=u?'linear-gradient(rgba(5,5,12,.6),rgba(5,5,12,.6)),url("'+u+'")':'none'}
+function bhtml(b){const x=fmt(b.x||'');
+if(b.t=='f')return `<div class="bal${b.side=='r'?' r':''}">${b.who?'<b class="who">'+esc(b.who)+'</b>':''}${x}</div>`;
+if(b.t=='p')return `<div class="pen">${x}</div>`;
+if(b.t=='s')return `<div class="sis">${x}</div>`;
+if(b.t=='e')return `<div class="efx">${x}</div>`;
+return `<p class="tx">${x}</p>`}
+function ctl(b,i){const T=[['t','Texto'],['f','Fala'],['p','Pensamento'],['s','Sistema'],['e','Efeito']];
+return `<div class="ctl"><select data-f="t" data-i="${i}">${T.map(o=>`<option value="${o[0]}"${b.t==o[0]?' selected':''}>${o[1]}</option>`).join('')}</select>`+
+(b.t=='f'?`<input data-f="who" data-i="${i}" placeholder="Quem fala" value="${esc(b.who||'')}"><select data-f="side" data-i="${i}"><option value="l">Esquerda</option><option value="r"${b.side=='r'?' selected':''}>Direita</option></select>`:'')+
+`<input type="color" data-f="c1" data-i="${i}" value="${ok(b.c1,'#12151b')}"><input type="color" data-f="c2" data-i="${i}" value="${ok(b.c2,'#2b3340')}"><input data-f="img" data-i="${i}" placeholder="URL da imagem de fundo (opcional)" value="${esc(b.img||'')}">`+
+`<button data-a="bup" data-i="${i}">▲</button><button data-a="bdn" data-i="${i}">▼</button><button data-a="bdel" data-i="${i}">✕</button></div><textarea data-f="x" data-i="${i}">${esc(b.x||'')}</textarea>`}
+function watch(){io1&&io1.disconnect();io2&&io2.disconnect();const c=cur();
+io1=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)bg(c.blocks[+e.target.dataset.i])}),{rootMargin:'-45% 0px -45% 0px'});
+io2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.12});
+document.querySelectorAll('.blk').forEach(n=>{io1.observe(n);io2.observe(n)});bg(c.blocks[0])}
+function render(){
+S.cur=Math.min(Math.max(S.cur||0,0),S.chs.length-1);const c=cur();
+document.body.classList.toggle('edit',E);
+$('#ttl').textContent=c.title;document.title=c.title||'Lore';
+$('#tog').textContent=E?'👁 Ler':'✎ Editar';
+$('#chs').innerHTML=S.chs.map((h,i)=>`<li class="${i==S.cur?'on':''}" data-i="${i}">${esc(h.title||'Sem título')}${E?`<span class="mv"><button data-a="up" data-i="${i}">▲</button><button data-a="dn" data-i="${i}">▼</button><button data-a="del" data-i="${i}">✕</button></span>`:''}</li>`).join('');
+const inp=(f,p)=>`<input data-f="${f}" value="${esc(c[f]||'')}" placeholder="${p}">`;
+let h='<header class="hero">';
+if(E)h+=inp('note','Aviso pequeno no topo (opcional)')+inp('title','Título do capítulo')+inp('sub','Subtítulo')+inp('music','Link do YouTube para a música deste capítulo');
+else h+=(c.note?`<div class="ia">${esc(c.note)}</div>`:'')+`<h1>${esc(c.title)}</h1><div class="sub">${esc(c.sub||'')}</div>`;
+h+='</header>';
+c.blocks.forEach((b,i)=>{h+=`<section class="blk" data-i="${i}">${E?ctl(b,i):''}<div class="pv">${bhtml(b)}</div></section>`});
+h+=E?'<div class="addrow"><button data-a="addb">+ Bloco</button> <button data-a="paste">📋 Colar texto em blocos</button></div>':(S.cur<S.chs.length-1?'<div class="end"><button data-a="next">Próximo capítulo →</button></div>':'<div class="end">⚡ CONTINUA? ⚡</div>');
+$('#view').innerHTML=h;watch()}
+function yid(u){const m=(u||'').match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/);return m?m[1]:null}
+function music(){const f=$('#yt'),id=yid(cur().music);
+if(playing&&id)f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&loop=1&playlist='+id;else f.removeAttribute('src');
+$('#mbtn').textContent=playing&&id?'🔊':'🔈'}
+const go=()=>{save();render();scrollTo(0,0);if(playing)music()};
+function dl(n,t,m){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:m}));a.download=n;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1e4)}
+const sw=(arr,x,y)=>{if(y<0||y>=arr.length)return false;const t=arr[x];arr[x]=arr[y];arr[y]=t;return true};
+document.addEventListener('input',e=>{const t=e.target,f=t.dataset.f;if(!f)return;const c=cur();
+if(t.dataset.i===undefined){c[f]=t.value;if(f=='title'){const li=$('#chs li.on');if(li)li.firstChild.nodeValue=t.value||'Sem título';$('#ttl').textContent=t.value}save();return}
+const b=c.blocks[+t.dataset.i];b[f]=t.value;save();
+if(f=='t'){render();return}
+t.closest('.blk').querySelector('.pv').innerHTML=bhtml(b);bg(b)});
+document.addEventListener('change',e=>{if(e.target.dataset.f=='music'&&e.target.dataset.i===undefined)music()});
+document.addEventListener('click',e=>{const t=e.target.closest('[data-a],#chs li');if(!t)return;
+const a=t.dataset.a,i=+t.dataset.i,c=cur();
+if(!a){S.cur=i;if(innerWidth<1000)document.body.classList.remove('menu');return go()}
+if(a=='menu')document.body.classList.toggle('menu');
+else if(a=='tog'){E=!E;render()}
+else if(a=='music'){playing=!playing;if(playing&&!yid(c.music)){playing=false;alert('Este capítulo ainda não tem link do YouTube. Entre no modo ✎ Editar e cole o link no campo de música.')}music()}
+else if(a=='next'){S.cur++;go()}
+else if(a=='addch'){S.chs.push({id:uid(),title:'Novo capítulo',sub:'',music:'',note:'',blocks:[blank()]});S.cur=S.chs.length-1;go()}
+else if(a=='up'||a=='dn'){const j=a=='up'?i-1:i+1;if(sw(S.chs,i,j)){if(S.cur==i)S.cur=j;else if(S.cur==j)S.cur=i;save();render()}}
+else if(a=='del'){if(S.chs.length>1&&confirm('Excluir este capítulo?')){S.chs.splice(i,1);go()}}
+else if(a=='bup'||a=='bdn'){if(sw(c.blocks,i,a=='bup'?i-1:i+1)){save();render()}}
+else if(a=='bdel'){c.blocks.splice(i,1);save();render()}
+else if(a=='addb'){c.blocks.push(blank(c.blocks[c.blocks.length-1]));save();render()}
+else if(a=='paste')$('#dlg').showModal();
+else if(a=='pno')$('#dlg').close();
+else if(a=='pgo'){const last=c.blocks[c.blocks.length-1];
+$('#pt').value.split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean).forEach(s=>{const b=blank(last);b.x=s;c.blocks.push(b)});
+$('#pt').value='';$('#dlg').close();save();render()}
+else if(a=='exp')dl('lore-backup.json',JSON.stringify(S,null,1),'application/json');
+else if(a=='site'){const j=JSON.stringify(S).replace(/</g,'\\u003c');
+dl('index.html',SRC.replace(/(<script id="seed" type="application\/json">)[\s\S]*?(<\/script>)/,(m,x,y)=>x+j+y),'text/html')}
+else if(a=='imp')$('#file').click()});
+$('#file').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();
+r.onload=()=>{try{const o=JSON.parse(r.result);if(!o.chs||!o.chs.length)throw 0;S=o;S.cur=0;save();render()}catch(x){alert('Arquivo de backup inválido.')}};
+r.readAsText(f);e.target.value=''};
+if(RO)document.body.classList.add('ro');
+else if(innerWidth>=1000)document.body.classList.add('menu');
+render();music();
+})();
+</script></body></html>
